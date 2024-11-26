@@ -1,0 +1,1 @@
+A web app for monitoring power systems: track device states, create custom visualizations, add new units, and integrate data effortlessly with a standardized API for smarter system management.

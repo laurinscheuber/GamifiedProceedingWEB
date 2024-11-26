@@ -1,0 +1,2 @@
+Module Administration<br>
+Streamline academic management with a user-friendly solution designed for deans and students. This project enables the efficient creation and management of modules, study programs, study courses, groups, and semesters, while providing tools for creating study regulations and clear visualizations of module overviews.

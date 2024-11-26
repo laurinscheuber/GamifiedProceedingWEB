@@ -1,25 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- https://www.w3schools.com/howto/howto_html_include.asp -->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script>
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /* Loop through a collection of all HTML elements: */
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute("w3-include-html");
+    if (file) {
+      /* Make an HTTP request using the attribute value as the file name: */
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          /* Remove the attribute, and call this function once more: */
+          elmnt.removeAttribute("w3-include-html");
+          includeHTML();
+        }
+      }
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /* Exit the function: */
+      return;
+    }
+  }
+}
+</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--TODO-->
-    <title>Projectname – FHNW - Student Projects in undergraduate Computer Sciences Program </title>
-    <link href="https://web0.fhnw.ch/ht/informatik/ip34/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <script type="text/javascript" src="https://web0.fhnw.ch/ht/informatik/ip34/js/main.js"></script>
+    <title>FHNW - Student Projects in undergraduate Computer Sciences Program </title>
+    <link href="https://web0.fhnw.ch/ht/informatik/ip34/css/style.css" type="text/css" rel="stylesheet" media="screen">
+    <script src="https://web0.fhnw.ch/ht/informatik/ip34/js/main.js"></script>
 </head>
 
 <body>
     <header>
         <div class="container">
-           <div class="row">
+            <div class="row">
                 <div class="col s12 offset-m1 m10 offset-l2 l8">
-            <a href="https://www.fhnw.ch/de/studium/technik">
-                <img src="https://web0.fhnw.ch/ht/informatik/ip34/23vt/images/fachhochschule-nordwestschweiz-fhnw-logo.svg" alt="FHNW"><br>
-                <p>Student Projects in undergraduate Computer Sciences</p>
-            </a>
-               </div>
+                    <a href="https://www.fhnw.ch/de/studium/technik">
+                        <img src="https://web0.fhnw.ch/ht/informatik/ip34/images/fachhochschule-nordwestschweiz-fhnw-logo.svg" alt="FHNW"><br>
+                        <p>Student Projects in undergraduate Computer Sciences</p>
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -27,133 +55,97 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 offset-m1 m10 offset-l2 l8">
-                    <h1><img src="images/hero-gamified-proceedings.png" alt="Gamified Proceedings" class="responsive"></h1>
-                    <h2>@David Critical-games.ch presents the gamified proceedings of the namesake event, highlighting connections and collaboration
-                    across performances.</h2>
-                    <p><img src="../images/images-size2.jpg" class="responsive" alt="Text"><br>optional project image</p>
-                    <h3>Initial Situation</h3>
-                    <p>The University for music of FHNW in Basel held an event called <strong>"SPIEL! games as critical practice"</strong> in January of 2023. The 4 day event held many different performances like lectures, concerts, vernissages and discussions. The Event was a highlight for the University and there was a lot of educational content created at the event. These proceedings were in the hand of a few people and the broader public didn't have a way to access it.</p>
-                    <h3>Project Goal</h3>
-                    <p>Our goal was to create a <strong>web based archive</strong> to provide all the content from the event SPIEL! games as critical practice, in one public place. The second objective was to build a gamified way to showcase the <strong>connection between the proceedings</strong> from the event. The client had no precise idea for the implementation and representation of the interconnectivity.</p>
-                </div>
-            </div><!-- end row -->
-        </div> <!-- end container -->
-        <section class="grey-1">
-            <div class="container">
-                <div class="row">
-                    <div class="col s12 m6 l4">
-                        <h3>Intro Screen</h3>
-                        <div class="materialboxed-wrap">
-                            <img src="images/intro.gif" class="responsive materialboxed hoverable" alt="FHNW">
-                        </div>
-                        <p>This fancy intro screen gives the user a short description of the site before diving into the 3D connection space of the site.</p>
-                    </div>
-                    <div class="col s12 m6 l4">
-                        <h3>Explore</h3>
-                        <div class="materialboxed-wrap">
-                            <img src="images/explore.gif" class="responsive materialboxed hoverable" alt="FHNW">
-                        </div>
-                        <p>The explore section showcases a 3D node cloud with all topic, events and people from the event. The user can Zoom in and out, navigate throught the 3D world and jump to any node with just a click.</p>
-                    </div>
-                    <div class="col s12 m6 l4">
-                        <h3>Events</h3>
-                        <div class="materialboxed-wrap">
-                            <img src="images/event.gif" class="responsive materialboxed hoverable" alt="FHNW">
-                        </div>
-                        <p>Each event has his own page. which displays in a beatiful way the Title, description, date and time, place, images and Videos. Additionally you have PDF files to download and an interactive node connection part to see the interconnectivity.</p>
-                    </div>
-                    <div class="col s12 m6 l4">
-                        <h3>People</h3>
-                        <div class="materialboxed-wrap">
-                            <img src="images/people.gif" class="responsive materialboxed hoverable" alt="FHNW">
-                        </div>
-                        <p>There is a people overview with all the key people that took part at the event. You can then navigate on each and find some more details like a picture, description, keyworkds and also an interactive 3D connection panel.</p>
-                    </div>
-                    <div class="col s12 m6 l4">
-                        <h3>Timeline</h3>
-                        <div class="materialboxed-wrap">
-                            <img src="images/timeline.gif" class="responsive materialboxed hoverable" alt="FHNW">
-                        </div>
-                        <p>The timeline gives a nice overview of a timeline of all the events in a timely order and all their connections. You can navigate through them from one to the other or just navigate throught the 3D world itself.</p>
-                    </div>
-                    <div class="col s12 m6 l4">
-                        <h3>Search function</h3>
-                        <div class="materialboxed-wrap">
-                            <img src="images/search.gif" class="responsive materialboxed hoverable" alt="FHNW">
-                        </div>
-                        <p>There is an implemented search function which lets you find direct information easily by searching for people and events.</p>
-                    </div>
-
-                </div><!-- end row -->
-            </div> <!-- end container -->
-        </section><!-- end section -->
-        <div class="container">
-            <div class="row">
-                <div class="col s12 offset-m1 m10 offset-l2 l8">
-                    <h3>@David Developed Solution and its benefit</h3>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp.</p>
-                    <ul class="nobullet">
-                        <li>auto-generated notes when information about a lead was changed.</li>
-                        <li>being able to see sources as tags</li>
-                        <li>being able to differentiate between which lead has more urgency</li>
-                        <li>less whitespace therefore more information</li>
-                        <li>a more powerful and detailed filter and search option</li>
-                        <li>a better user management</li>
-                        <li>a settings page with more configuration possibilities</li>
-                        <li>being able to import excel files</li>
-                    </ul>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp.</p>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
-                    <blockquote><strong>@David Testemonial</strong><br>
-                        «Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ju!»<br>
-                        <i>Client Name </i>
-                    </blockquote>
-                    <h3>Key terms</h3>
-                    <ul class="keyterms">
-                        <li><span>Programming Languages</span>TypeScript, JavaScript & SCSS</li>
-                        <li><span>Frontend Stack</span>Next.js (React-based framework) with React Three Fiber and Three.js for 3D rendering, Tailwind CSS</li>
-                        <li><span>Backend Stack</span>Sanity CMS with TypeScript</li>
-                        <li><span>Database</span>Sanity CMS</li>
-                        <li><span>Deployment Platform</span>Debian Server, Docker, Docker-Compose</li>
-                    </ul>
-                    <h3>Client</h3>
-                    <p><img src="images/logo-musik-akademie-basel.png" class="responsive" alt="Musik Akademie Basel"><br></p>
-                    <p><strong>Michel Roth</strong><br>
-                        4052 Basel<br>
-                        <a href="https://www.fhnw.ch/de/die-fhnw/hochschulen/musik">Hochschule für Musik Basel</a>
-                    </p>
-                    <h3>Team</h3>
-                    <div class="row">
-                        <div class="col s12 l9">
-                            <img src="../images/team-xy.jpg" alt="" class="responsive">
-                        </div>
-                        <div class="col s12 l3">
-                            <p><strong>Team</strong><br>
-                                Tamira Leber<br>
-                                Daniel Barber<br>
-                                Samuel Lupica<br>
-                                William Cruz<br>
-                                David Lenz<br>
-                                Joshua Wyss<br>
-                                Laurin Scheuber<br>
-                                Nicolas Ostwald<br>
-                                <strong>Coach</strong><br>
-                                Gabriela von Wyl</p>
-                        </div>
-                    </div><!-- end row -->
+                    <!--TODO adjust Title-->
+                    <h1>Student Projects IP34<br>
+                        Completion 2025 part-time</h1>
+                    <p>All these student projects have been realised with business partners as customers.</p>  
+                    <p>The projects have a duration of two semesters. The students are in their second year of study and eager to have real project experience. The student teams consist of 5-8 people which results in an overall project size of about 1800h. The projects are conducted iteratively in an agile manner with regular customer interaction. Thus customers are important to bring in their specific domain knowledge and to help shaping the product by  prioritising and focussing on value generation.</p>
+                    
+                    <p>The teams are coached by specialist teaching staff of the FHNW. Moreover, if more specialist knowledge is needed, students may contact any experts within the institutes.</p>
+                       <p>If you are interested in becoming a customer please contact <a href="mailto:projekte.sgi.technik@fhnw.ch">projekte.sgi.technik@fhnw.ch</a></p>
                 </div>
             </div>
+            <!--TODO generate the following sections automatically from the folders-->
+            <div class="row overview">
+                <div class="col s12 m6 l3">
+                    <a href="booking/index.html">
+                        <img src="booking/frontpage/image-960x720.jpg" class="responsive" alt="Tour Booking">
+                        <h4 w3-include-html="booking/frontpage/project-title.txt"></h4>
+                        <p w3-include-html="booking/frontpage/teaser.txt"></p>
+                    </a>
+                </div>
+                <div class="col s12 m6 l3">
+                    <a href="contactlens/index.html">
+                        <img src="contactlens/frontpage/image-960x720.jpg" class="responsive" alt="Contact Lens Catalogue 2">
+                        <h4 w3-include-html="contactlens/frontpage/project-title.txt"></h4>
+                        <p w3-include-html="contactlens/frontpage/teaser.txt"></p>
+                    </a>
+                </div>
+                <div class="col s12 m6 l3">
+                    <a href="formica/index.html">
+                        <img src="formica/frontpage/image-960x720.jpg" class="responsive" alt="Observation tool for Ants (Formica Sensu Strictu)">
+                        <h4 w3-include-html="formica/frontpage/project-title.txt"></h4>
+                        <p w3-include-html="formica/frontpage/teaser.txt"></p>
+                    </a>
+                </div>
+                <div class="col s12 m6 l3">
+                    <a href="lake/index.html">
+                        <img src="lake/frontpage/image-960x720.jpg" class="responsive" alt="Shake the Lake App">
+                        <h4 w3-include-html="lake/frontpage/project-title.txt"></h4>
+                        <p w3-include-html="lake/frontpage/teaser.txt"></p>
+                    </a>
+                </div>
+                <div class="col s12 m6 l3">
+                    <a href="module/index.html">
+                        <img src="module/frontpage/image-960x720.jpg" class="responsive" alt="SGI Module Administration">
+                        <h4 w3-include-html="module/frontpage/project-title.txt"></h4>
+                        <p w3-include-html="module/frontpage/teaser.txt"></p>
+                    </a>
+                </div>
+                <div class="col s12 m6 l3">
+                    <a href="posterrack/index.html">
+                        <img src="posterrack/frontpage/image-960x720.jpg" class="responsive" alt="Mobile Poster Stand Management">
+                        <h4 w3-include-html="posterrack/frontpage/project-title.txt"></h4>
+                        <p w3-include-html="posterrack/frontpage/teaser.txt"></p>
+                    </a>
+                </div>
+                <div class="col s12 m6 l3">
+                    <a href="powersystem/index.html">
+                        <img src="powersystem/frontpage/image-960x720.jpg" class="responsive" alt="Power System Monitoring">
+                        <h4 w3-include-html="powersystem/frontpage/project-title.txt"></h4>
+                        <p w3-include-html="powersystem/frontpage/teaser.txt"></p>
+                    </a>
+                </div>
+				<div class="col s12 m6 l3">
+                    <a href="proceedings/index.html">
+                        <img src="proceedings/frontpage/image-960x720.jpg" class="responsive" alt="Gamified Database of a Music and Sound Festival">
+                        <h4 w3-include-html="proceedings/frontpage/project-title.txt"></h4>
+                        <p w3-include-html="proceedings/frontpage/teaser.txt"></p>
+                    </a>
+                </div>
+				<div class="col s12 m6 l3">
+                    <a href="process/index.html">
+                        <img src="process/frontpage/image-960x720.jpg" class="responsive" alt="Simple Process Mining">
+                        <h4 w3-include-html="process/frontpage/project-title.txt"></h4>
+                        <p w3-include-html="process/frontpage/teaser.txt"></p>
+                    </a>
+                </div>
+            </div><!-- end row -->
         </div>
     </main>
+    <script>
+includeHTML();
+</script>
     <footer class="black">
         <div class="container">
             <div class="row">
                 <div class="col s12 offset-m1 m10 offset-l2 l8">
-                    <h4><img src="../images/arrow-left-long-solid.svg" alt="arrow"> <a href="../index.html">IP34 Project overview</a></h4>
+                    <h4><img src="https://web0.fhnw.ch/ht/informatik/ip34/images/arrow-left-long-solid.svg" alt="arrow"> <a href="https://web0.fhnw.ch/ht/informatik/ip34/">All IP34 Projects</a></h4>
                     <p>If you are interested in becoming a customer please contact <a href="mailto:projekte.sgi.technik@fhnw.ch">projekte.sgi.technik@fhnw.ch</a></p>
                 </div>
             </div><!-- end row -->
         </div>
     </footer>
 </body>
+
 </html>

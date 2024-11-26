@@ -1,0 +1,1 @@
+Streamline the management of study programs, modules, etc., with a web-based solution that reduces errors, saves time, simplifies semester planning, regulation generation, and provides module overviews.
